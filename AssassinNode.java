@@ -1,7 +1,7 @@
 public class AssassinNode {
-    private String player; //Name of player
-    private String killer; //Nameo of person who killed the player
-    private AssassinNode next; //Points to the next node
+    public String player; //Name of player
+    public String killer; //Nameo of person who killed the player
+    public AssassinNode next; //Points to the next node
     public AssassinNode(String player) { //Node with  player name and a null pointer
         this(player, null);
     }

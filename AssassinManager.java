@@ -3,18 +3,22 @@ public class AssassinManager {
     private AssassinNode killRingHead = null;
     private AssassinNode graveYardHead = null;
     public AssassinManager(List<String> names) { //loop might go through list in reverse, may need to fix
-            for(int i = 0; i <= names.size() -1; i++) {
-                killRingHead = new AssassinNode(names.get(i), killRingHead);
-            }
+        if (names == null || (names.size() == 0)){
+            throw new IllegalArgumentException();
+        }
+        for(int i = 0; i <= names.size() -1; i++) {
+            killRingHead = new AssassinNode(names.get(i), killRingHead);
+        }
     }
     public void printKillRing() {
-        AssassinNode node = killRingHead;
+        AssassinNode node = killRingHead; // Grabs the name of the first player before iterating through the linked list chain
         String firstPlayerName = node.player;
         while(node.next != null) { //Prints out who is stalking who if the list is not empty
             System.out.println("  " + node.player + " is stalking " + node.next.player);
             node = node.next; //Progresses through list
         }
-        System.out.println("  " + node.player + " is stalking " + firstPlayerName);
+
+        System.out.println("  " + node.player + " is stalking " + firstPlayerName); // Hooks the last player to the first player text
 
     }
     public void printGraveyard() {
@@ -60,6 +64,9 @@ public class AssassinManager {
         if(isGameOver()) {  //Throws IllegalStateException if the game is not over, takes precedence over IllegalArgumentException
             throw new IllegalStateException();
         }
+        else if (!isGameOver() && graveYardContains(name)){
+            System.out.println(name + " is already dead.");
+        }
         else if(!killRingContains(name)) {  //Throws IllegalArgumentException is name entered is not found
             throw new IllegalArgumentException();
         }
@@ -90,5 +97,6 @@ public class AssassinManager {
                 graveYardHead = dead;
             }
         }
+
     }
 }

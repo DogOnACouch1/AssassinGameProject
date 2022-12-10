@@ -49,18 +49,16 @@ public class AssassinMain{
         DEBUGPRINTARRAY(nameList);
         
         AssassinManager AssassinManager = new AssassinManager(nameList);
-        
-        //
-        //  AssassinManager goes here
-        //
+
+        AssassinManager.printKillRing();
 
         //  GAME LOOP
 
-        // while(!(isGameOver())){
+        //while(!(AssassinManager.isGameOver())){
         //     display();
         //     System.out.println("Who is to die today?");
         //     System.in.read();
-        // }
+        //}
 
         //  System.out.println(winner() + " is the winner!");   DEFINE winner()
 

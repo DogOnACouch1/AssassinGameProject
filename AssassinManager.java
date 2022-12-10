@@ -22,7 +22,7 @@ public class AssassinManager {
     public void printGraveyard() {
         AssassinNode node = graveYardHead;
         while(node != null) { //Prints out who was killed by who if list is not empty
-            System.out.print("  " + node.player + " was killed by " + node.killer);
+            System.out.println("  " + node.player + " was killed by " + node.killer);
             node = node.next; //Progresses through list
         }
     }
@@ -59,7 +59,7 @@ public class AssassinManager {
         return null; //Returns null if the list has more than one person
     }
     public void kill(String name) throws IllegalStateException, IllegalArgumentException {
-        if(!isGameOver()) {  //Throws IllegalStateException if the game is not over, takes precedence over IllegalArgumentException
+        if(isGameOver()) {  //Throws IllegalStateException if the game is not over, takes precedence over IllegalArgumentException
             throw new IllegalStateException();
         }
         else if(!killRingContains(name)) {  //Throws IllegalArgumentException is name entered is not found

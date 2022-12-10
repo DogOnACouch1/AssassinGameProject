@@ -29,6 +29,9 @@ public class AssassinMain{
         //  Get array from Manager
         //  Iterate array
         //     (two space indent) NAME was killed by NAME
+
+        
+        
     }
 
     public static void display(){
@@ -50,17 +53,28 @@ public class AssassinMain{
         
         AssassinManager AssassinManager = new AssassinManager(nameList);
 
-        AssassinManager.printKillRing();
-
         //  GAME LOOP
+        
+        Scanner inputScanner = new Scanner(System.in);
 
-        //while(!(AssassinManager.isGameOver())){
-        //     display();
-        //     System.out.println("Who is to die today?");
-        //     System.in.read();
-        //}
+        while(!(AssassinManager.isGameOver())){
+            System.out.println("Current kill ring:");
+            AssassinManager.printKillRing();
+            System.out.println("Current graveyard:");
+            AssassinManager.printGraveyard();
 
-        //  System.out.println(winner() + " is the winner!");   DEFINE winner()
+            System.out.println("Who is to die today?");
+            String userInput = inputScanner.nextLine();
+            System.out.println(userInput);
+            AssassinManager.kill(userInput);
+        }
+
+        System.out.println("Game was won by " + AssassinManager.winner());
+
+        System.out.println("Final graveyard is as follows:");
+        AssassinManager.printGraveyard();
+
+        inputScanner.close();
 
         
     }

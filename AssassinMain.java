@@ -17,7 +17,7 @@ public class AssassinMain{
         scanner.close();
         return nameList;
     }
-    
+
     //  TODO DELETE THIS FUNCTION BEFORE PUBLISHING
     public static void DEBUGPRINTARRAY(List<String> nameList){
         for (int i = 0; i < nameList.size(); i++){
@@ -31,18 +31,18 @@ public class AssassinMain{
         AssassinManager AssassinManager = new AssassinManager(nameList);
 
         //  GAME LOOP
-        
         Scanner inputScanner = new Scanner(System.in);
 
         while(!(AssassinManager.isGameOver())){
+            //  Prints the player status
             System.out.println("Current kill ring:");
             AssassinManager.printKillRing();
             System.out.println("Current graveyard:");
             AssassinManager.printGraveyard();
 
+            //  Player Input
             System.out.println("Who is to die today?");
             String userInput = inputScanner.nextLine();
-            System.out.println(userInput);
             AssassinManager.kill(userInput);
         }
 

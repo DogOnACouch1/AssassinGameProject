@@ -9,15 +9,13 @@ public class AssassinManager {
     }
     public void printKillRing() {
         AssassinNode node = killRingHead;
-        if(node != null && node.next == null) {
-            System.out.println("  " + node.player + " is the last one alive."); //May need to change this
+        String firstPlayerName = node.player;
+        while(node.next != null) { //Prints out who is stalking who if the list is not empty
+            System.out.println("  " + node.player + " is stalking " + node.next.player);
+            node = node.next; //Progresses through list
         }
-        else { 
-            while(node.next != null) { //Prints out who is stalking who if the list is not empty
-                System.out.println("  " + node.player + " is stalking " + node.next.player);
-                node = node.next; //Progresses through list
-            }
-        }
+        System.out.println("  " + node.player + " is stalking " + firstPlayerName);
+
     }
     public void printGraveyard() {
         AssassinNode node = graveYardHead;

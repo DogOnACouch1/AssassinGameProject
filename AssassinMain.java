@@ -16,29 +16,6 @@ public class AssassinMain{
         }
         scanner.close();
         return nameList;
-
-
-    }
-    public static void printKillRing(){
-        //  Get array from Manager
-        //  Iterate array
-        //     (two space indent) NAME is stalking NAME
-    }
-
-    public static void printGraveyard(){
-        //  Get array from Manager
-        //  Iterate array
-        //     (two space indent) NAME was killed by NAME
-
-        
-        
-    }
-
-    public static void display(){
-        System.out.println("Current kill ring:");
-        printKillRing();
-        System.out.println("Current graveyard");
-        printGraveyard();
     }
     
     //  TODO DELETE THIS FUNCTION BEFORE PUBLISHING

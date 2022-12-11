@@ -1,0 +1,88 @@
+import java.util.*;
+public class AssassinManager
+{
+    private AssassinNode KillRing;
+    private AssassinNode Assassin;
+    private AssassinNode DeadAssassin;
+    private AssassinNode TheGraveyard; 
+    public AssassinManager(List<String> names)
+    {
+        if(names == null || names.size() == 0)
+        {
+            throw new IllegalArgumentException();
+        }
+        LinkedList<String> killRing = new LinkedList<String>();
+    }
+    public void printKillRing()
+    {
+        Assassin = KillRing;
+        while (Assassin.next != null) 
+        {
+            System.out.println(" " + Assassin.name + " is currently stalking "+ Assassin.next.name);
+            Assassin =Assassin.next;
+        }
+        System.out.println(" " + Assassin.name + " is currently stalking " + KillRing.name);
+    }
+    public void printGraveyard()
+    {
+        Assassin = TheGraveyard;
+        while (Assassin != null) 
+        {
+            System.out.println(" " + Assassin.name + " was assasinated by "+ Assassin.killer);
+            Assassin = Assassin.next;
+        }
+    }
+    public boolean killRingContains(String name)
+    {
+        return doesListContains(name, KillRing);
+    }
+    public boolean graveyardContains(String name)
+    {
+        return doesListContains(name,TheGraveyard);
+    }
+    public boolean isGameOver()
+    {
+        return KillRing.next == null;
+    }
+    public String winner()
+    {
+        if(!isGameOver())
+        {
+            return null;
+        }
+    }
+    public void kill(String name)
+    {
+        Assassin = KillRing;
+        DeadAssassin = TheGraveyard;
+        if (!killRingContains(name)) 
+        {
+            throw new IllegalArgumentException();
+        } 
+        else if (isGameOver()) 
+        {
+            throw new IllegalStateException();
+        }
+        if (Assassin.name.equalsIgnoreCase(name)) 
+        {
+            DeadAssassin = Assassin;
+            while (Assassin.next != null) 
+            {
+                Assassin = Assassin.next;
+            }
+            KillRing = KillRing.next;
+        }
+        else 
+        {
+            while (!Assassin.next.name.equalsIgnoreCase(name)) 
+            {
+                Assassin = Assassin.next;
+            }
+            DeadAssassin = Assassin.next;
+            Assassin.next = Assassin.next.next;
+        }
+        DeadAssassin.killer = Assassin.name;
+        DeadAssassin.next = TheGraveyard;
+        TheGraveyard = DeadAssassin;
+    }
+}
